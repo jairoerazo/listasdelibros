@@ -1,0 +1,53 @@
+{% extends 'listas/base.html' %}
+{% load staticfiles %}
+{% block content %}
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h4 class="m-0 font-weight-bold text-success">
+        {% if list_gender.gender %}
+          {% for gender in list_gender.gender %}
+            {{ gender.name }}
+          {% endfor %}
+        {% else %}
+          Todas
+        {% endif %}
+      </h4>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Lista</th>
+              <th>Fuente</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>listas</th>
+              <th>Fuente</th>
+            </tr>
+          </tfoot>
+          <tbody>
+  <!-- List -->
+            {% if list_gender.gender %}
+              {% for list in list_gender.lists %}
+                <tr>
+                  <td><a href="/list_content/{{ list.id }}">{{ list.name }}</a></td>
+                  <td>{{ list.source }}</td>
+                </tr>
+              {% endfor %}
+            {% else %}
+              {% for list in list_gender %}
+                <tr>
+                  <td><a href="/list_content/{{ list.id }}">{{ list.name }}</a></td>
+                  <td>{{ list.source }}</td>
+                </tr>
+              {% endfor %}
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}

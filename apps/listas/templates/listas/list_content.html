@@ -1,0 +1,65 @@
+{% extends 'listas/base.html' %}
+{% load staticfiles %}
+{% block content %}
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <div class="row pl-2">
+        <h4 class="m-0 font-weight-bold text-success">
+          {% if list_content %}
+            {% for list in list_content.list %}
+              {{ list.name }}
+            {% endfor %}
+          {% endif %}
+        </h4>
+        <div class="ml-auto row align-items-center no-gutters">
+          {% if list_content %}
+            {% for list in list_content.list %}
+              <div class="mt-1 pr-1">({{ list.likes.count }})</div>
+              <a href="/list_content/{{ list.id }}/like">
+                <i class="fas fa-bookmark fa-2x text-gray-500 pr-2"> </i>
+              </a>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Título</th>
+              <th>Autor</th>
+              <th>Año</th>
+              <th>País</th>
+              <th>idioma</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>Título</th>
+              <th>Autor</th>
+              <th>Año</th>
+              <th>País</th>
+              <th>idioma</th>
+            </tr>
+          </tfoot>
+          <tbody>
+  <!-- List -->
+          {% if list_content %}
+            {% for book in list_content.books %}
+              <tr>
+                <td>{{ book.name }}</td>
+                <td></td>
+                <td>{{ book.year }}</td>
+                <td></td>
+                <td>{{ book.language }}</td>
+              </tr>
+            {% endfor %}
+          {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}

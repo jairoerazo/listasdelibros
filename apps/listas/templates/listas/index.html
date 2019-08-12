@@ -1,0 +1,60 @@
+{% extends 'listas/base.html' %}
+{% load staticfiles %}
+{% block intro %}
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Listas populares</h1>
+  </div>
+  <!-- Content Row -->
+  <div class="row">
+    <!-- List -->
+    {% if lists %}
+      {% for list in lists.popular_lists %}
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">{{ list.source }}</div>
+                  <a href="list_content/{{ list.id }}">
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ list.name }}</div>
+                  </a>
+                </div>
+                <div class="row align-items-center no-gutters">
+                  <div class="text-xs mt-1 pr-1">({{ list.likes.count }})</div>
+                  <i class="fas fa-book-reader  text-gray-300"> </i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+{% endblock %}
+{% block content %}
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h4 mb-1 text-gray-800">Últimas listas publicadas</h1>
+  </div>
+
+  <div class="row">
+    <!-- List -->
+    {% if lists %}
+      {% for list in lists.latest_lists%}
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card">
+              <div class="card-header py-3">
+                <a href="list_content/{{ list.id }}">
+                  <h6 class="m-0 font-weight-bold text-primary">{{ list.name }}</h6>
+                </a>
+              </div>
+              <div class="card-body">
+                {{ list.description }}
+              </div>
+        </div>
+      </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+{% endblock %}
