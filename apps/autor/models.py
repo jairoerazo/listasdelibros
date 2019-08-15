@@ -10,4 +10,4 @@ class Autor(models.Model):
     nobel = models.BooleanField()
 
     def __str__(self):
-        return f"{self.surname}, {self.name}"
+        return "{}, {}".format(self.surname, self.name)
