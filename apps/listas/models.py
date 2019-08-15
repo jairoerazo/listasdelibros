@@ -20,7 +20,7 @@ class Lists(models.Model):
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank= True)
 
     def get_absolute_url(self):
-        return f"/list_content/{self.id}/"
+        return "/list_content/{}/".format(self.id)
 
     def __str__(self):
         return self.name
