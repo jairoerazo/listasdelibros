@@ -32,7 +32,7 @@
               <th>Autor</th>
               <th>Año</th>
               <th>País</th>
-              <th>idioma</th>
+              <th>Idioma</th>
             </tr>
           </thead>
           <tfoot>
@@ -41,7 +41,7 @@
               <th>Autor</th>
               <th>Año</th>
               <th>País</th>
-              <th>idioma</th>
+              <th>Idioma</th>
             </tr>
           </tfoot>
           <tbody>
@@ -49,11 +49,29 @@
           {% if list_content %}
             {% for book in list_content.books %}
               <tr>
-                <td>{{ book.name }}</td>
-                <td></td>
-                <td>{{ book.year }}</td>
-                <td></td>
-                <td>{{ book.language }}</td>
+                <td>
+                  {% if book.name %}
+                    {{ book.name }}
+                  {% endif %}
+                </td>
+                <td>
+                  {% if book.author %}
+                    {{ book.author }}
+                  {% endif %}
+                </td>
+                <td>
+                  {% if book.year %}
+                    {{ book.year }}
+                  {% endif %}
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  {% if book.language  %}
+                    {{ book.language }}
+                  {% endif %}
+                </td>
               </tr>
             {% endfor %}
           {% endif %}
