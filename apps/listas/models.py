@@ -1,7 +1,7 @@
 from django.db import models
 from apps.autor.models import Autor
-from django.urls import reverse
 from django.conf import settings
+
 
 # Create your models here.
 class Gender(models.Model):
@@ -10,6 +10,7 @@ class Gender(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Lists(models.Model):
     name = models.CharField(max_length=200)
@@ -24,6 +25,7 @@ class Lists(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Book(models.Model):
     name = models.CharField(max_length=200)
