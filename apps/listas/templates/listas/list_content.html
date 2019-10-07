@@ -25,6 +25,14 @@
     </div>
     <div class="card-body">
       <div class="table-responsive">
+
+          {% if list_content %}
+            {% for list in list_content.list %}
+              <h5>Fuente: {{ list.source }}</h5>
+              <h6>{{ list.description }}</h6>
+            {% endfor %}
+          {% endif %}
+
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
@@ -65,7 +73,7 @@
                   {% endif %}
                 </td>
                 <td>
-                  
+
                 </td>
                 <td>
                   {% if book.language  %}

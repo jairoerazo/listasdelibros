@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework import authentication, permissions
 from django.contrib.auth.models import User
 from django.db.models import Count
+from django.conf import settings
 # Create your views here.
 
 class IndexLists(ListView):
@@ -15,12 +16,14 @@ class IndexLists(ListView):
     context_object_name = 'lists'
     model = Lists
     template_name = 'listas/index.html'
+
     def get_queryset(self):
         #queryset 1 count likes for list  and order it
         #queryset 2 shows latest 4 lists
         queryset = {
             'popular_lists': Lists.objects.all().annotate(rating=Count('likes')).order_by('-rating')[:4],
-            'latest_lists': Lists.objects.all().order_by('-id')[:4]
+            'latest_lists': Lists.objects.all().order_by('-id')[:4],
+            'ga': settings.GOOGLE_ANALYTICS
         }
         return queryset
 
