@@ -89,3 +89,18 @@ class LikeList(RedirectView):
         else:
             print("Ir a register user")
         return obj.get_absolute_url()
+
+
+class AddBook(RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        slug =  self.kwargs.get("id_book")
+        obj = get_object_or_404(Book, id=slug)
+        user = self.request.user
+        if user.is_authenticated:
+            if user in obj.userlist.all():
+                obj.userlist.remove(user)
+            else:
+                obj.userlist.add(user)
+        else:
+            print("Ir a register user")
+        #return obj.get_absolute_url()

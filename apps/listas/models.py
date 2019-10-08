@@ -35,6 +35,11 @@ class Book(models.Model):
     gender = models.ForeignKey(Gender, null=True, blank=True, on_delete=models.SET_NULL)
     author = models.ForeignKey(Autor, null=True, blank=True, on_delete=models.SET_NULL)
     list = models.ManyToManyField(Lists)
+    # User's list
+    userlist = models.ManyToManyField(settings.AUTH_USER_MODEL, blank= True)
+
+    #def get_absolute_url(self):
+    #    return "/book/{}/".format(self.id)
 
     def __str__(self):
         return self.name

@@ -41,6 +41,7 @@
               <th>Año</th>
               <th>País</th>
               <th>Idioma</th>
+              <th>Mi lista</th>
             </tr>
           </thead>
           <tfoot>
@@ -50,6 +51,7 @@
               <th>Año</th>
               <th>País</th>
               <th>Idioma</th>
+              <th>Mi lista</th>
             </tr>
           </tfoot>
           <tbody>
@@ -78,6 +80,13 @@
                 <td>
                   {% if book.language  %}
                     {{ book.language }}
+                  {% endif %}
+                </td>
+                <td>
+                  {% if book %}
+                    <!--<a href="/add_book/{{ book.id }}">
+                      <i class="fas fa-plus-square fa-2x pr-2"> </i>
+                    </a>-->
                   {% endif %}
                 </td>
               </tr>
