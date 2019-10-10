@@ -5,34 +5,12 @@
     <div class="card-header py-3">
       <div class="row pl-2">
         <h4 class="m-0 font-weight-bold text-success">
-          {% if list_content %}
-            {% for list in list_content.list %}
-              {{ list.name }}
-            {% endfor %}
-          {% endif %}
+          {{ user }}, estos son tus libros para leer:
         </h4>
-        <div class="ml-auto row align-items-center no-gutters">
-          {% if list_content %}
-            {% for list in list_content.list %}
-              <div class="mt-1 pr-1">({{ list.likes.count }})</div>
-              <a href="/list_content/{{ list.id }}/like">
-                <i class="fas fa-bookmark fa-2x text-gray-500 pr-2"> </i>
-              </a>
-            {% endfor %}
-          {% endif %}
-        </div>
       </div>
     </div>
     <div class="card-body">
       <div class="table-responsive">
-
-          {% if list_content %}
-            {% for list in list_content.list %}
-              <h5>Fuente: {{ list.source }}</h5>
-              <h6>{{ list.description }}</h6>
-            {% endfor %}
-          {% endif %}
-
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
@@ -41,7 +19,7 @@
               <th>Año</th>
               <th>País</th>
               <th>Idioma</th>
-              <th>Mi lista</th>
+              <th>Borrar</th>
             </tr>
           </thead>
           <tfoot>
@@ -51,13 +29,13 @@
               <th>Año</th>
               <th>País</th>
               <th>Idioma</th>
-              <th>Mi lista</th>
+              <th>Borrar</th>
             </tr>
           </tfoot>
           <tbody>
   <!-- List -->
-          {% if list_content %}
-            {% for book, inlist in list_content.books %}
+          {% if user_list %}
+            {% for book in user_list.books %}
               <tr>
                 <td>
                   {% if book.name %}
@@ -83,23 +61,9 @@
                   {% endif %}
                 </td>
                 <td>
-                  {% if inlist == False %}
-                    {% if list_content %}
-                      {% for list in list_content.list %}
-                        <a href="/add_book/{{ book.id }}/{{ list.id }}">
-                          <i class="fas fa-plus-square fa-2x pr-2"> </i>
-                        </a>
-                      {% endfor %}
-                    {% endif %}
-                  {% else %}
-                    {% if list_content %}
-                      {% for list in list_content.list %}
-                        <a href="/add_book/{{ book.id }}/{{ list.id }}">
-                          <i class="fas fa-minus-square fa-2x pr-2"> </i>
-                        </a>
-                      {% endfor %}
-                    {% endif %}
-                  {% endif %}
+                  <a href="/add_book/{{ book.id }}/{{ list.id }}">
+                    <i class="fas fa-minus-square fa-2x pr-2"> </i>
+                  </a>
                 </td>
               </tr>
             {% endfor %}
