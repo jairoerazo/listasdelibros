@@ -75,7 +75,9 @@
                   {% endif %}
                 </td>
                 <td>
-
+                  {% if book.author %}
+                    {{ book.author.country }}
+                  {% endif %}
                 </td>
                 <td>
                   {% if book.language  %}
