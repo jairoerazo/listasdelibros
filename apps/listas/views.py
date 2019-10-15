@@ -23,6 +23,7 @@ class IndexLists(ListView):
         queryset = {
             'popular_lists': Lists.objects.all().annotate(rating=Count('likes')).order_by('-rating')[:4],
             'latest_lists': Lists.objects.all().order_by('-id')[:4],
+            'latest_books': Book.objects.all().order_by('-id')[:4],
             'ga': settings.GOOGLE_ANALYTICS
         }
         return queryset
